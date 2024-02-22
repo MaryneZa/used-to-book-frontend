@@ -1,0 +1,11 @@
+services:
+  frontend-used-to-book:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6916:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+        
