@@ -1,25 +1,28 @@
 "use client";
-import { userLogin } from '@/src/service/auth'; // Adjust the path accordingly
+import { userLogin } from '@/src/services/auth'; // Adjust the path accordingly
 import { FormEvent, useState } from 'react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
     try {
-      const userData = await userLogin({ email, password });
-      console.log(userData); // Handle successful login response
-      // Redirect user or perform other actions after successful login
+        const userData = await userLogin({ email, password });
+        console.log(userData); // Handle successful login response
+        // Redirect user or perform other actions after successful login
     } catch (error) {
-      console.error('Error logging in:', error.message); // Handle login error
-      // Display error message to the user or perform other error handling
+        if (error instanceof Error) {
+            console.error('Error logging in:', error.message); // Handle login error
+            // Display error message to the user or perform other error handling
+        } else {
+            console.error('Error logging in:', error); // Fallback handling for unknown errors
+        }
     }
-  };
-  
+};
+
 
   return (
     <div>
