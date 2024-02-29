@@ -1,7 +1,7 @@
 import { api } from "../libs/http";
 
 // Function to fetch data from a specific endpoint
-export const getAllUser = async () => {
+export const getAllBooks = async () => {
     try {
         const response = await api.get("/books/books")
         if (response.status >= 200 && response.status < 300) {
